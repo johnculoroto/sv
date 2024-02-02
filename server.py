@@ -1,14 +1,10 @@
-import http.server
-import socketserver
+from flask import Flask, render_template
 
-# Define el puerto en el que se ejecutará el servidor
-puerto = 8000
+app = Flask(__name__)
 
-# Configura el manejador del servidor para servir archivos estáticos
-handler = http.server.SimpleHTTPRequestHandler
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-# Crea el servidor en el puerto especificado
-with socketserver.TCPServer(("", puerto), handler) as httpd:
-    print(f"Servidor web activo en el puerto {puerto}")
-    # Mantén el servidor en funcionamiento
-    httpd.serve_forever()
+if __name__ == '__main__':
+    app.run(debug=True)
