@@ -1,10 +1,14 @@
 import http.server
 import socketserver
 
-PORT = 3000
+# Define el puerto en el que se ejecutará el servidor
+puerto = 8000
 
-Handler = http.server.SimpleHTTPRequestHandler
+# Configura el manejador del servidor para servir archivos estáticos
+handler = http.server.SimpleHTTPRequestHandler
 
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("Servidor en el puerto", PORT)
+# Crea el servidor en el puerto especificado
+with socketserver.TCPServer(("", puerto), handler) as httpd:
+    print(f"Servidor web activo en el puerto {puerto}")
+    # Mantén el servidor en funcionamiento
     httpd.serve_forever()
